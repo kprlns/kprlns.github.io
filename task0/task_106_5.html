@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ru">
+<head>
+    <title>task0</title>
+    <link rel="icon" type="image/png" href="resources/dvlogo.png"/>
+</head>
+<body >
+    <table width="800" border="1" bgcolor="EEF2FE">
+        <tr>
+            <th colspan="4" height="50" bgcolor="D7D9EE">
+                <img src="resources/dvlogo.png" width="12" height="18.75">
+                Добро пожаловать. Снова.
+            </th>
+        </tr>
+
+        <tr>
+            <td rowspan="5" width="180" style="vertical-align: top" >
+                Актуальные новости
+                <br><br>
+                <ol>
+                    <li>8 сентября прошли выборы в МосГорДуму</li>
+                    <li>В столице проходит грандиозный парад коммунальной техники</li>
+                    <li>Более 400 тыс. человек сделали прививки от гриппа в Москве</li>
+                    <li>Почти 50 станций метро построят в Москве до конца 2023 года</li>
+                    <li>Сразу несколько фестивалей проходят в столице в субботу</li>
+                </ol>
+            </td>
+            <td rowspan="4" width="450" style="vertical-align: top">
+                <div>
+                    <div style="color: orange">Вопрос:</div>
+                    Столкнулся с задачей реализации вывода потоками на экран информации в строго определенном порядке. Без ограничения общности, пусть каждый поток выводит слово в бесконечном цикле, требуется организовать вывод их на экран в алфавитном порядке.
+                    <br>
+                    Как устроить синхронизацию их работы? Можно, как я понимаю, обращаться к глобальной переменной, её менять, приостанавливать каждый поток при определенных её значениях...
+                    <br>
+                    Что посоветуете?
+                </div>
+
+                <br>
+                <br>
+                <div style="margin-left: 30px">
+                    <div style="color: orange">Ответ:</div>
+
+                    Поройтесь в java.util.concurrent.synchronizers. Скорее всего вам понадобится CountDownLatch Можно ставить блочить все остальные потоки, пока один поток не дойдет до точки разблокировки. Пошорудить их так, чтобы они поочередно друг друга разблокировали.
+                </div>
+            </td>
+
+        </tr>
+
+        <tr bgcolor="">
+            <th width="150" colspan="2" bgcolor="D7D9EE">
+                Здесь могла бы быть ваша реклама
+            </th>
+        </tr>
+        <tr>
+            <td height="200" colspan="2" >
+                Продам гараж
+            </td>
+        </tr>
+        <tr>
+            <td height="200" colspan="2">
+                Вакансии:
+                <ul>
+                    <li>Senior React front-end developer</li>
+                    <li>Full stack web developer</li>
+                    <li>Middle Java back-end developer</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" bgcolor="D7D9EE">
+                Курсы валют: &emsp;
+                $ 36.63<div style="color: red; display: inline">↘</div>
+                &emsp;
+                € 44.92<div style="color: green; display: inline">↗</div>
+                <a href="info.html" style="float: right">
+                    О работе
+                </a>
+            </td>
+
+        </tr>
+
+
+
+        <tr></tr>
+    </table>
+</body>
+</html>

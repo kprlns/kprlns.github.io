@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Task 1</title>
+</head>
+
+
+<script>
+    function myOnBlur(obj) {
+        const errString = "<div style='color: red'>Некорректный ввод. Введите 2 числа.</div>"
+        const okString = "<div style='color: green'>Введено 2 числа.</div>"
+        //let input = document.getElementById("inp");
+        let inpString = obj.value;
+        let res = inpString.trim().split(" ");
+        if (res.length === 2) {
+            let first = Number(res[0]);
+            let second = Number(res[1]);
+
+            if(Number.isInteger(first) && Number.isInteger(second)) {
+                document.getElementById(obj.id + "_message")
+                    .innerHTML = okString;
+            } else {
+                document.getElementById(obj.id + "_message")
+                    .innerHTML = errString;
+                obj.focus()
+            }
+        } else {
+            document.getElementById(obj.id + "_message")
+                .innerHTML = errString;
+            obj.focus()
+        }
+    }
+</script>
+
+<body>
+    <div align="center">
+        <label>
+            Введите 2 числа через пробел:
+            <input id="inp" onblur="myOnBlur(this)">
+        </label>
+        <div id="inp_message"> </div>
+    </div>
+
+</body>
+</html>
+
