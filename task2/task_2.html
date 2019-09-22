@@ -1,0 +1,64 @@
+<script>
+    //import {$, jQuery} from 'jQuery';
+
+</script>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Task 2</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+
+
+        $(document).ready(function() {
+            const okMessage = "#okMessage";
+            const errMessage = "#errMessage" ;
+            window.currentMessage = errMessage;
+// 9: blur()
+            $("#inp").blur(function () {
+                let newMessage = "";
+
+                let inpString = $(this).val(); //1: val()
+                let res = inpString.trim().split(" ");
+                if (res.length === 2) {
+                    let first = Number(res[0]);
+                    let second = Number(res[1]);
+                    if (Number.isInteger(first) && Number.isInteger(second)) {
+                        window.newMessage = okMessage;
+                    } else {
+                        window.newMessage = errMessage;
+                        $(this).focus()
+                    }
+                } else {
+                    window.newMessage = errMessage;
+                    this.focus();
+                }
+                //
+                $(window.currentMessage).fadeOut(1000, function () {
+                    $(window.newMessage).fadeIn(2000);
+                });
+                window.currentMessage = window.newMessage;
+            })})
+    </script>
+
+</head>
+
+
+<body>
+    <div align="center">
+        <label>
+            Введите 2 числа через пробел:
+            <input id="inp" type="text">
+        </label>
+        <div id="inp_message">
+            <div hidden id="errMessage" style='color: red'>Некорректный ввод. Введите 2 числа.</div>
+            <div hidden id="okMessage" style='color: green'>Введено 2 числа.</div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
