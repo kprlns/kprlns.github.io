@@ -9,18 +9,18 @@
 <head>
     <title>Task 2</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <script>
-
-
         $(document).ready(function() {
             const okMessage = "#okMessage";
             const errMessage = "#errMessage" ;
             window.currentMessage = errMessage;
-// 9: blur()
-            $("#inp").blur(function () {
-                let newMessage = "";
 
-                let inpString = $(this).val(); //1: val()
+
+            function checkInput() {
+                let newMessage = "";
+//1: val()
+                let inpString = $("#inp").val();
                 let res = inpString.trim().split(" ");
                 if (res.length === 2) {
                     let first = Number(res[0]);
@@ -29,25 +29,69 @@
                         window.newMessage = okMessage;
                     } else {
                         window.newMessage = errMessage;
-                        $(this).focus()
+                        $("#inp").focus()
                     }
                 } else {
                     window.newMessage = errMessage;
-                    this.focus();
+                    $("#inp").focus();
                 }
                 //
+                $("br#br").remove();
                 $(window.currentMessage).fadeOut(1000, function () {
                     $(window.newMessage).fadeIn(2000);
                 });
                 window.currentMessage = window.newMessage;
-            })})
+            }
+
+// 9: blur()
+            $("#inp").blur(checkInput);
+
+
+            $("#pasteCoords").click(function (event) {
+// 7: event
+                $("#inp").val(event.pageX.toString() + " " + event.pageY.toString());
+                checkInput();
+            })
+
+// 3: image
+// 8: hover
+            $(":image").hover(
+                function () {
+// 2: height
+                    let h = $(this).height();
+                    let w = $(this).width();
+// 10: animate
+// 4: работа со стилями
+                    $(this).animate({height: h*2, width: w*2}, 2000);
+// 6: prevAll
+                    $(this).prevAll(".logos").animate({height: h*2, width: w*2}, 2000);
+                },
+                function () {
+                    $(this).animate({height: 37.5, width: 24}, 1000);
+                    $(this).prevAll(".logos").animate({height: 37.5, width: 24}, 1000);
+                }
+            );
+
+
+//5: unwrap
+            $("#moveUp").click(function () {
+                $(this).unwrap();
+                $("#buttonBr").remove();
+                $(this).remove()
+            });
+
+            });
+
+
+
+
     </script>
 
 </head>
 
 
 <body>
-    <div align="center">
+    <div align="center" style="margin-top: 20px">
         <label>
             Введите 2 числа через пробел:
             <input id="inp" type="text">
@@ -55,7 +99,20 @@
         <div id="inp_message">
             <div hidden id="errMessage" style='color: red'>Некорректный ввод. Введите 2 числа.</div>
             <div hidden id="okMessage" style='color: green'>Введено 2 числа.</div>
+        </div>
+        <br id="br">
+        <br><br>
+        <input id="pasteCoords" type="button" value="Вставить координаты мыши">
+        <br><br>
 
+        <!--<input type="image" src="resources/dvlogo.png" width="12" height="18.75" alt="Oops, smth wrong">
+        -->
+        <div style="margin-top: 100px">
+            <input id="moveUp" type="button" value="Поднять картинки выше">
+            <br id="buttonBr">
+            <input class="logos" id="logo1" type="image" src="resources/dvlogo.png" style="margin-right: 50px;width: 24px; height: 37.5px" alt="Oops, smth wrong">
+            <input class="logos" id="logo2" type="image" src="resources/dvlogo.png" style="margin-right: 50px;margin-left: 50px;width: 24px; height: 37.5px" alt="Oops, smth wrong">
+            <input class="logos" id="logo3" type="image" src="resources/dvlogo.png" style="margin-left: 50px;width: 24px; height: 37.5px" alt="Oops, smth wrong">
         </div>
     </div>
 
