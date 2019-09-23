@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>about</title>
+</head>
+<body>
+
+
+    <div>
+        Задание: номер по списку 5, группа 1.
+        <br>Часть 1. Переделать задание 1 с доступом к элементам с помощью JQuery
+        <br>Часть 2. Разработать 2-3 примера с использованием JQuery, который включал бы функции из разделов
+
+        <ol>
+            <li>val()</li>
+            <li>height(), innerHeight(), outerHeight()</li>
+            <li>:image</li>
+            <li>offsetParent()</li>
+            <li>unwrap()</li>
+            <li>prevAll()</li>
+            <li>event()</li>
+            <li>hover()</li>
+            <li>blur()</li>
+            <li>animate()</li>
+        </ol>
+        Работу выполнил Капралов Никита, студент группы 8о-106М-19.
+        <br>
+
+        <table width="800" border="1" >
+            <tr>
+                <th width="80">Пример</th>
+                <th width="100">Функции JQuery</th>
+                <th width="310">Описание</th>
+                <th width="390">Схожие функции</th>
+            </tr>
+            <tr>
+                <td >
+                    Пример 1
+                </td>
+                <td>
+                    <ol>
+                        <li>val()</li>
+                        <li>focus()</li>
+                        <li>blur()</li>
+                        <li>remove()</li>
+                        <li>fadeIn()</li>
+                        <li>fadeOut()</li>
+                    </ol>
+                </td>
+                <td>
+                    Данный пример получает значение из поля для ввода с помощью val(),
+                    Затем, если был певый вызов, удялает фиктивный элемент, при помощи функции remove(),
+                    который сделан с целью, чтобы элементы на страницы не пермещались при появлении (fadeIn(), fadeOut())
+                    сообщения c информацией о корректности ввода. Проверка в соотвествии с вариантом происходит при изменении фокуса.
+                </td>
+                <td>
+                    <ol>
+                        <li>val(), attr(), html(), prop() — Манипуляция, получение атрибутов</li>
+                        <li>focus(), mouseleave(), mouseenter(), click() — Функции для отслеживания взаимодействия пользователя мышью со страницей</li>
+                        <li>blur(), keydown(), focusin() — События клавиатуры и формы</li>
+                        <li>remove(), unwrap(), wrap(), replaceAll(), append() — Манипуляции, обновление/удаление содержимого</li>
+                        <li>fadeIn(), fadeOut(), animate(), slideUp(), slideDown() — Эффекты</li>
+                        <li>fadeOut() — см. предыдущий пункт</li>
+                    </ol>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td width="80">
+                    Пример 2
+                </td>
+                <td>
+                    <ol>
+                        <li>val()</li>
+                        <li>event</li>
+
+                    </ol>
+                </td>
+                <td>
+                    Этот пример при помощи event вставляет в поле для ввода координаты мыши при нажатии на кнопку.
+                    После вставки вызывается функция проверки корректности ввода.
+                </td>
+
+
+                <td>
+                    <ol>
+                        <li>val() — См. выше</li>
+                        <li>event, on(), off(), bind() — Базовые события </li>
+                    </ol>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td width="80">
+                    Пример 3
+                </td>
+                <td>
+                    <ol>
+                        <li>:image</li>
+                        <li>prevAll()</li>
+                        <li>animate()</li>
+                        <li>hover()</li>
+                        <li>height()</li>
+                    </ol>
+                </td>
+                <td>
+                    Данный пример при помощи event вставляет в поле для ввода координаты мыши при нажатии на кнопку.
+                    После вставки вызывается функция проверки корректности ввода.
+                </td>
+
+                <td>
+                    <ol>
+                        <li>:image, #elemId, this, .class — Селекторы</li>
+                        <li>prevAll(), removeAll(), appendTo(), prependTo() — Работа с набором, перемещение по DOM</li>
+                        <li>animate() — См. выше</li>
+                        <li>hover() — См. выше</li>
+                        <li>height(), width(), css(), scrollTop(), innerHeight(), outerWidth() — CSS</li>
+                    </ol>
+                </td>
+            </tr>
+        </table>
+        <br>
+        <div>
+            Примечание: вся работа выполнена на одной странице.
+        </div>
+    </div>
+</body>
+</html>
