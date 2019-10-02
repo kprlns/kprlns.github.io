@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>task3js</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<script>
+    $(document).ready(function () {
+        const okMessage = "#okMessage";
+        const errMessage = "#errMessage";
+        window.currentMessage = errMessage;
+
+        function checkInput() {
+            let newMessage = "";
+
+            let res = $("#inp").val().trim();
+            let first = Number(res);
+            if (Number.isInteger(first)) {
+                window.newMessage = okMessage;
+            } else {
+                window.newMessage = errMessage;
+            }
+            $("br#stub").remove();
+            $(window.currentMessage).fadeOut(500, function () {
+                $(window.newMessage).fadeIn(500);
+            });
+            window.currentMessage = window.newMessage;
+        }
+
+        function buildTriangle(n) {
+            let result = new Array(n);
+            for (let i = 0; i < result.length; ++i) {
+                result[i] = new Array(n);
+            }
+
+            for (let i = 0; i < n; ++i) {
+                result[i][0] = 1;
+                result[0][i] = 1;
+            }
+
+            for (let k = 2; k < n; ++k) {
+                let i = k - 1;
+                let j = 1;
+                for (; j <= k - 1; ++j, --i) {
+                    result[i][j] = result[i - 1][j] + result[i][j - 1]
+                }
+            }
+            return result;
+        }
+
+        $("input#build").click(function () {
+            checkInput();
+            let n = Number($("#inp").val().trim());
+            let triangle = buildTriangle(n);
+            let resultTable = "<div align=\"center\">";
+            for (let k = 0; k < n; ++k) {
+                resultTable += '<div>';
+                let i = k;
+                let j = 0;
+                for (; j <= k; ++j, --i) {
+                    resultTable += triangle[i][j] + ' ';
+                    if (j !== k - 1) {
+                        resultTable += ' ';
+                    }
+
+                }
+                resultTable += '</div>'
+            }
+            resultTable += "</div>";
+
+            resultTable += "</div>";
+
+            //document.getElementById("result").innerHTML = resultTable;
+            $("div#triangle").html(resultTable);
+        })
+    })
+</script>
+
+
+<body>
+
+<div align="center">
+
+    <a href="task3.html">
+        Назад
+    </a>
+
+    <div>
+        Введите размер:
+        <input id="inp" type="text">
+        <input type="button" id="build" value="Построить">
+    </div>
+    <br id="stub">
+    <div id="inp_message">
+        <div hidden id="errMessage" style='color: red'>Некорректный ввод. Введите число.</div>
+        <div hidden id="okMessage" style='color: green'>Корректный ввод.</div>
+    </div>
+    <div id="triangle">
+
+    </div>
+    <div hidden align="center">
+        <div>1</div>
+        <div>1 1</div>
+    </div>
+</div>
+</body>
+</html>
