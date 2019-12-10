@@ -1,0 +1,95 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        td { max-width: 1000px; }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+</head>
+<body>
+<div>
+    <h3>Лабораторная №5 OpenData</h3>
+    <h3>Вариант: Объекты культурного наследия</h3>
+    <h3>Задание выполнено с использованием библиотеки DataTables</h3>
+
+</div>
+<form>
+    <input id="top-n" type="number">
+    <button id="getDataButton">Получить данные</button>
+    <button id="clearTable">Очистить</button>
+</form>
+<div id="root">
+    <table id="root-table" border="1">
+        <thead>
+        <tr>
+            <th>Индентификатор</th>
+            <th>Наименование по документам</th>
+            <th>Название</th>
+            <th>Адрес</th>
+            <th>Тип объекта</th>
+            <th>Округ</th>
+            <th>Район</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<div id="ajax">
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script>
+    function buildUrl(top) {
+        return `https://apidata.mos.ru/v1/datasets/530/rows?$top=${top}&api_key=79652b11962d7f3b4a9f3e071d1cd144`;
+    }
+
+    function getTopDataset(top) {
+        const url = buildUrl(top);
+        console.log(`Request url: ${url}`);
+
+        $("#root-table").css("visibility", "visible");
+        return $("#root-table").DataTable({
+            ajax: {
+                url: url,
+                dataSrc: ''
+            },
+            columns: [
+                {"data": "global_id"},
+                {"data": "Cells.EnsembleNameOnDoc"},
+                {"data": "Cells.ObjectNameOnDoc"},
+                {"data": "Cells.Address"},
+                {"data": "Cells.ObjectType"},
+                {"data": "Cells.AdmArea"},
+                {"data": "Cells.District"}
+            ]
+        });
+    }
+
+    $("#root-table").css("visibility", "hidden");
+
+    let table;
+    $("#getDataButton").on("click", (event) => {
+        event.preventDefault();
+        if (!!table) {
+            table.clear();
+            table.destroy();
+            table = null;
+        }
+        const currentValue = $("#top-n").val();
+        const top = currentValue || 10;
+        table = getTopDataset(top);
+    });
+
+    $("#clearTable").on("click", (event) => {
+        event.preventDefault();
+        table.clear();
+        table.destroy();
+        table = null;
+        $("#root-table").css("visibility", "hidden");
+    });
+
+</script>
+</body>
+</html>
