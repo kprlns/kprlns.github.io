@@ -13,6 +13,7 @@
 <div>
     <h3>Лабораторная №5 OpenData</h3>
     <h3>Вариант: Объекты культурного наследия</h3>
+    <h3>Выполнил студент группы 8О-106М Капралов Никита</h3>
     <h3>Задание выполнено с использованием библиотеки DataTables</h3>
 
 </div>
@@ -45,7 +46,7 @@
         return `https://apidata.mos.ru/v1/datasets/530/rows?$top=${top}&api_key=79652b11962d7f3b4a9f3e071d1cd144`;
     }
 
-    function getTopDataset(top) {
+    function getData(top) {
         const url = buildUrl(top);
         console.log(`Request url: ${url}`);
 
@@ -79,7 +80,7 @@
         }
         const currentValue = $("#top-n").val();
         const top = currentValue || 10;
-        table = getTopDataset(top);
+        table = getData(top);
     });
 
     $("#clearTable").on("click", (event) => {
